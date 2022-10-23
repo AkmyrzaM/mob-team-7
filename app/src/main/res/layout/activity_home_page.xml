@@ -17,5 +17,13 @@
         android:layout_below="@+id/tab_layout"
         android:id="@+id/view_pager2"/>
 
+    <Button
+        android:id="@+id/phoneBack"
+        android:layout_margin="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/ic_baseline_call_24"
+        android:layout_width="48dp"
+        android:layout_height="48dp"/>
 
 </RelativeLayout>
