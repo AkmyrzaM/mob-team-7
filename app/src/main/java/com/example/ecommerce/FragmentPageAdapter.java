@@ -15,7 +15,11 @@ public class FragmentPageAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-                return new MobileFragment();
+        if (position == 1)
+            return new CameraFragment();
+        if (position == 2)
+            return new LaptopFragment();
+        return new MobileFragment();
     }
 
     @Override

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     EditText passwordTXT;
     CheckBox rememberMeCB;
     Button loginButton;
+    Button phoneBack;
     TextView signUpButton;
 
     // Backend variables
@@ -66,6 +68,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
+        //this is one of the new functions that customers may need. Namely saying it lets the user to make a phone calls.
+        phoneBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:87074754801"));
+                startActivity(callIntent);
+            }
+        });
     }
 
     private void initiateEnvVariables(){
@@ -74,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         rememberMeCB = (CheckBox) findViewById(R.id.in_rememberMe);
         loginButton = (Button) findViewById(R.id.bt_login);
         signUpButton = (TextView) findViewById(R.id.bt_signUp);
+        phoneBack = (Button) findViewById(R.id.phoneBack);
         database = new DPOperations(this);
         sharedPref = getSharedPreferences("remember me", MODE_PRIVATE);
     }
