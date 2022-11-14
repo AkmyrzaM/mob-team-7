@@ -12,6 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce">
+        <activity
+            android:name=".MyProfile"
+            android:exported="false" />
         <activity android:name=".HomePageActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".MainActivity">
