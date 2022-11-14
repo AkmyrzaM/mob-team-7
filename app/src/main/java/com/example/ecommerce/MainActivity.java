@@ -98,13 +98,13 @@ public class MainActivity extends AppCompatActivity {
 
         if(!username.equals("") && !password.equals("")){
             Cursor cursor = database.userLogin(username, password);
-            if(cursor == null)
+            if(cursor == null || cursor.getCount() == 0)
                 Toast.makeText(getApplicationContext(),"Username or password is invalid", Toast.LENGTH_LONG).show();
             else
             {
                 UserID = cursor.getInt(0);
                 FullName = cursor.getString(1);
-                stayLoggedIn("", "", "", false);
+                stayLoggedIn(username, username, password, false);
                 return true;
             }
         }

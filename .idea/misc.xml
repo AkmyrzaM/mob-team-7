@@ -5,7 +5,9 @@
       <map>
         <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.1503623188405797" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1503623188405797" />
+        <entry key="app/src/main/res/layout/activity_my_profile.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/layout/fragment_camera.xml" value="0.1503623188405797" />
+        <entry key="app/src/main/res/menu/options_menu.xml" value="0.16770833333333332" />
       </map>
     </option>
   </component>

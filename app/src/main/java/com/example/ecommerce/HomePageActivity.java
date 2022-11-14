@@ -1,11 +1,16 @@
 package com.example.ecommerce;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -19,6 +24,8 @@ public class HomePageActivity extends AppCompatActivity {
     ViewPager2 viewPager2;
     FragmentStateAdapter adapter;
     Button phoneBack;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +80,46 @@ public class HomePageActivity extends AppCompatActivity {
                 tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = new MenuInflater(this);
+        inflater.inflate(R.menu.options_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.profile:
+                sharedPreferences = getSharedPreferences("remember me", MODE_PRIVATE);
+                Intent intent2 = new Intent(HomePageActivity.this, MyProfile.class);
+                intent2.putExtra("name", sharedPreferences.getString("username", "Username"));
+                intent2.putExtra("pass", sharedPreferences.getString("password", "Password"));
+                startActivity(intent2);
+                return true;
+
+
+            case  R.id.logoutmenu:
+                // clear remember me
+                sharedPreferences = getSharedPreferences("remember me", MODE_PRIVATE);
+                editor = sharedPreferences.edit();
+                editor.putString("username", "");
+                editor.putString("fullName", "");
+                editor.putString("password", "");
+                editor.putBoolean("login", false);
+                editor.apply();
+
+                // Back to login page
+                Intent intent5 = new Intent(HomePageActivity.this, MainActivity.class);
+                startActivity(intent5);
+
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 
